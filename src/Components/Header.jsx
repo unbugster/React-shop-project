@@ -1,4 +1,4 @@
-function Header() {
+const Header = () => {
     return (
         <nav className="purple lighten-3">
             <div className="nav-wrapper">
