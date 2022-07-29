@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { API_KEY, API_URL } from "../config";
+import { Alert } from "./Alert";
 import { Cart } from "./Cart";
 import { CartList } from "./CartList";
 import { GoodsList } from "./GoodsList";
@@ -10,6 +11,7 @@ const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
     const [isCartShow, setCartShow] = useState(false);
+    const [alertName, setAlertName] = useState('');
 
     const getGoods = () => {
         fetch(API_URL, {
@@ -25,7 +27,9 @@ const Shop = () => {
     };
 
     const addToCart = (item) => {
-        const itemIndex = order.findIndex((el) => el.id === item.id);
+        const itemIndex = order.findIndex(
+            (orderItem) => orderItem.id === item.id
+        );
 
         if (itemIndex < 0) {
             const newItem = {
@@ -34,19 +38,20 @@ const Shop = () => {
             }
             setOrder([...order, newItem]);
         } else {
-            const newOrder = order.map((el, index) => {
+            const newOrder = order.map((orderItem, index) => {
 
                 if (index === itemIndex) {
                     return {
-                        ...el,
-                        quantity: el.quantity + 1,
+                        ...orderItem,
+                        quantity: orderItem.quantity + 1,
                     }
                 } else {
-                    return el;
+                    return orderItem;
                 }
             })
             setOrder(newOrder);
         }
+        setAlertName(item.displayName);
     };
 
     const removeFromCart = (id) => {
@@ -73,6 +78,7 @@ const Shop = () => {
 
         setOrder(newOrder);
     };
+
     const decQuantity = (id) => {
         const newOrder = order.map((item) => {
             if (item.id === id) {
@@ -92,6 +98,10 @@ const Shop = () => {
         setOrder(newOrder);
     }
 
+    const closeAlert = () => {
+        setAlertName('');
+    }
+
     useEffect(getGoods, []);
 
 
@@ -100,17 +110,21 @@ const Shop = () => {
             <Cart quantity={order.length} handleCartShow={handleCartShow} />
             {
                 loading
-                    ? <Preloader />
-                    : <GoodsList goods={goods} addToCart={addToCart} />
+                    ? (<Preloader />)
+                    : (<GoodsList goods={goods} addToCart={addToCart} />)
             }
             {
-                isCartShow && <CartList
-                    order={order}
-                    handleCartShow={handleCartShow}
-                    removeFromCart={removeFromCart}
-                    incQuantity={incQuantity}
-                    decQuantity={decQuantity}
-                />
+                isCartShow && (
+                    < CartList
+                        order={order}
+                        handleCartShow={handleCartShow}
+                        removeFromCart={removeFromCart}
+                        incQuantity={incQuantity}
+                        decQuantity={decQuantity}
+                    />
+                )}
+            {
+                alertName && <Alert name={alertName} closeAlert={closeAlert} />
             }
         </main>
     )

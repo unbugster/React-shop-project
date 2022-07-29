@@ -29,6 +29,8 @@ const CartList = (props) => {
                     : <li className="collection-item">Корзина пуста</li>
             }
             <li className="collection-item active">Общая стоимость: {totalPrice} руб.</li>
+            <li className="collection-item"><button className="btn-small">Оформить заказ</button></li>
+
             <i className="material-icons cart-close" onClick={handleCartShow}>close</i>
         </ul >
     )
