@@ -10,6 +10,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};
+
 export { Footer };

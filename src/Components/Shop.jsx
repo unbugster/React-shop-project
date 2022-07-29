@@ -127,7 +127,7 @@ const Shop = () => {
                 alertName && <Alert name={alertName} closeAlert={closeAlert} />
             }
         </main>
-    )
+    );
 };
 
 export { Shop };

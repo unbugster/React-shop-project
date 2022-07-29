@@ -14,7 +14,7 @@ const Alert = (props) => {
             clearTimeout(timerId)
         }
         // eslint-disable-next-line
-    }, [name])
+    }, [name]);
 
     return (
         <div id="toast-container">

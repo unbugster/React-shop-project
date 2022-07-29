@@ -1,4 +1,5 @@
 const Header = () => {
+
     return (
         <nav className="purple lighten-3">
             <div className="nav-wrapper">
@@ -8,7 +9,7 @@ const Header = () => {
                 </ul>
             </div>
         </nav>
-    )
-}
+    );
+};
 
 export { Header };

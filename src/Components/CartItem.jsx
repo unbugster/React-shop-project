@@ -8,7 +8,7 @@ const CartItem = (props) => {
         incQuantity = Function.prototype,
         decQuantity = Function.prototype,
     } = props;
-    console.log(finalPrice)
+
     return (
         <li className="collection-item">
             {displayName} <i

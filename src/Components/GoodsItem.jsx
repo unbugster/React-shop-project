@@ -12,6 +12,7 @@ const
         const { full_background } = displayAssets[0];
         const { finalPrice } = price;
         const id = mainId;
+
         return (
             <div className="card">
                 <div className="card-image">
@@ -29,6 +30,7 @@ const
                     <span className="right" style={{ fontSize: '1.8rem' }}>{finalPrice} руб.</span>
                 </div>
             </div>
-        )
-    }
+        );
+    };
+
 export { GoodsItem };

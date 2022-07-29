@@ -13,6 +13,7 @@ const GoodsList = (props) => {
                 <GoodsItem key={good.mainId} {...good} addToCart={addToCart} />
             ))}
         </div>
-    )
-}
+    );
+};
+
 export { GoodsList };

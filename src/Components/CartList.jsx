@@ -11,7 +11,7 @@ const CartList = (props) => {
 
     const totalPrice = order.reduce((acc, el) => {
         return acc + el.finalPrice * el.quantity;
-    }, 0)
+    }, 0);
 
     return (
         <ul className="collection cart-list">
@@ -33,6 +33,7 @@ const CartList = (props) => {
 
             <i className="material-icons cart-close" onClick={handleCartShow}>close</i>
         </ul >
-    )
-}
+    );
+};
+
 export { CartList };

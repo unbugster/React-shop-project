@@ -6,6 +6,6 @@ const Cart = (props) => {
             <i className="material-icons">shopping_cart</i>
             {quantity ? <span className="cart-quantity">{quantity}</span> : null}
         </div>
-    )
+    );
 }
 export { Cart };
