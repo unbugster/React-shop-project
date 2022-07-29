@@ -10,16 +10,16 @@ const CartItem = (props) => {
     } = props;
 
     return (
-        <li className="collection-item">
+        <li className="collection-item purple lighten-5">
             {displayName} <i
-                className="material-icons cart__item-quantity"
+                className="material-icons cart__item-quantity pink-text text-accent-4"
                 onClick={() => decQuantity(id)}
                 onMouseDown={(evt) => evt.preventDefault()}
             >
                 remove
             </i> x {quantity}
             <i
-                className="material-icons cart__item-quantity"
+                className="material-icons cart__item-quantity pink-text text-accent-4"
                 onClick={() => incQuantity(id)}
                 onMouseDown={(evt) => evt.preventDefault()}
             >
@@ -29,7 +29,7 @@ const CartItem = (props) => {
                 className="secondary-content"
                 onClick={() => removeFromCart(id)}
             >
-                <i className="material-icons cart-delete">close</i>
+                <i className="material-icons cart-delete pink-text text-accent-4">close</i>
             </span>
         </li>
 

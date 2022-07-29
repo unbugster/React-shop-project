@@ -68,6 +68,10 @@ nav {
   animation: show 500ms ease-in-out;
 }
 
+.collection-item.active {
+  background-color: red
+}
+
 .cart-close {
   cursor: pointer;
   position: absolute;

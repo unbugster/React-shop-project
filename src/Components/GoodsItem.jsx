@@ -26,7 +26,7 @@ const
                     </p>
                 </div>
                 <div className="card-action">
-                    <button className="btn" onClick={() => addToCart({ id, displayName, finalPrice })}>Купить</button>
+                    <button className="btn purple lighten-2" onClick={() => addToCart({ id, displayName, finalPrice })}>Купить</button>
                     <span className="right" style={{ fontSize: '1.8rem' }}>{finalPrice} руб.</span>
                 </div>
             </div>
