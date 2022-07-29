@@ -22,7 +22,7 @@ const Shop = () => {
                 data.shop && setGoods(data.shop);
                 setLoading(false);
             });
-    }
+    };
 
     const addToCart = (item) => {
         const itemIndex = order.findIndex((el) => el.id === item.id);
@@ -32,7 +32,7 @@ const Shop = () => {
                 ...item,
                 quantity: 1,
             }
-            setOrder([...order, newItem])
+            setOrder([...order, newItem]);
         } else {
             const newOrder = order.map((el, index) => {
 
@@ -42,20 +42,54 @@ const Shop = () => {
                         quantity: el.quantity + 1,
                     }
                 } else {
-                    return el
+                    return el;
                 }
             })
-            setOrder(newOrder)
+            setOrder(newOrder);
         }
-    }
+    };
 
     const removeFromCart = (id) => {
         const newOrder = order.filter((item) => item.id !== id);
         setOrder(newOrder);
-    }
+    };
 
     const handleCartShow = () => {
         setCartShow(!isCartShow);
+    };
+
+    const incQuantity = (id) => {
+        const newOrder = order.map((item) => {
+            if (item.id === id) {
+                const newQuantity = item.quantity + 1;
+                return {
+                    ...item,
+                    quantity: newQuantity,
+                }
+            } else {
+                return item;
+            }
+        });
+
+        setOrder(newOrder);
+    };
+    const decQuantity = (id) => {
+        const newOrder = order.map((item) => {
+            if (item.id === id) {
+                const newQuantity = item.quantity - 1;
+
+                return {
+                    ...item,
+                    quantity: newQuantity >= 0 ? newQuantity : 0,
+                }
+
+            } else {
+                return item;
+            }
+
+        }).filter((item) => item.quantity !== 0);
+
+        setOrder(newOrder);
     }
 
     useEffect(getGoods, []);
@@ -70,7 +104,13 @@ const Shop = () => {
                     : <GoodsList goods={goods} addToCart={addToCart} />
             }
             {
-                isCartShow && <CartList order={order} handleCartShow={handleCartShow} removeFromCart={removeFromCart} />
+                isCartShow && <CartList
+                    order={order}
+                    handleCartShow={handleCartShow}
+                    removeFromCart={removeFromCart}
+                    incQuantity={incQuantity}
+                    decQuantity={decQuantity}
+                />
             }
         </main>
     )

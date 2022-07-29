@@ -5,6 +5,8 @@ const CartList = (props) => {
         order = [],
         handleCartShow = Function.prototype,
         removeFromCart = Function.prototype,
+        incQuantity = Function.prototype,
+        decQuantity = Function.prototype,
     } = props;
 
     const totalPrice = order.reduce((acc, el) => {
@@ -16,7 +18,14 @@ const CartList = (props) => {
             <li className="collection-item active">Корзина</li>
             {
                 order.length
-                    ? order.map(item => <CartItem key={item.id} {...item} removeFromCart={removeFromCart} />)
+                    ? order.map((item) => (
+                        <CartItem
+                            key={item.id}
+                            {...item}
+                            removeFromCart={removeFromCart}
+                            incQuantity={incQuantity}
+                            decQuantity={decQuantity}
+                        />))
                     : <li className="collection-item">Корзина пуста</li>
             }
             <li className="collection-item active">Общая стоимость: {totalPrice} руб.</li>
